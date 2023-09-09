@@ -28,3 +28,48 @@ export async function getAllPosts() {
 }
 
 // Desenvolva as funcionalidades de requisições aqui
+
+export const createNewUser = async (requestBody) => {
+  const newUser = await fetch(`${baseUrl}/users/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestBody),
+  })
+    .then(async (response) => {
+      const responseConverted = await response.json();
+
+      if (response.ok) {
+        alert("Usuário criado com sucesso!");
+        return responseConverted;
+      } else {
+        throw new Error(responseConverted.message);
+      }
+    })
+    .catch((erro) => alert(erro.message));
+
+  return newUser;
+};
+
+export const loginRequest = async (requestBody) => {
+  const token = await fetch(`${baseUrl}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(requestBody)
+  }).then(async (response) => {
+    const responseConvert = await response.json();
+
+    if (response.ok) {
+      alert("Logado com sucesso!");
+      localStorage.setItem("@petinfo:token", responseConvert.token);
+      location.replace("./src/pages/feed.html");
+    } else {
+      alert("Ops")
+    }
+  })
+
+  return token;
+};
