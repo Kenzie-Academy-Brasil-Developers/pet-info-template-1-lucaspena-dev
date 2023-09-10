@@ -6,15 +6,16 @@ const handleRegister = () => {
   const inputs = document.querySelectorAll(".input__register");
   const button = document.querySelector("#register__submit");
 
-  button.addEventListener("click", (event) => {
+  button.addEventListener("click", async (event) => {
     event.preventDefault();
+    
     const newUser = {};
 
     inputs.forEach((input) => {
       newUser[input.name] = input.value;
     });
 
-    createNewUser(newUser);
+    await createNewUser(newUser);
   });
 };
 

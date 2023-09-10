@@ -5,13 +5,20 @@ import { loginRequest } from "./requests.js";
 const handleLogin = () => {
   const email = document.querySelector("#Email");
   const pass = document.querySelector("#Senha");
+  const wrongEmail = document.querySelector("#wrong-email");
+  const wrongPass = document.querySelector("#wrong-password");
   const button = document.querySelector("#login__submit");
+  let count = 0;
 
   button.addEventListener("click", (event) => {
     event.preventDefault();
+
+    const emailValue = email.value;
+    const passValue = pass.value;
+
     const user = {
-      email: email.value,
-      password: pass.value,
+      email: emailValue,
+      password: passValue,
     };
 
     loginRequest(user);

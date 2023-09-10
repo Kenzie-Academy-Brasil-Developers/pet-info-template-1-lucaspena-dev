@@ -43,5 +43,31 @@
         <!-- Aqui serão renderizados os posts -->
       </section>
     </main>
+
+    <dialog class="modal__controller modal__controller--newPost">
+      <div class="modal__container">
+        <h2 class="title3">Criando um novo post</h2>
+        <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
+
+        <form id="newPost">
+          <label for="modalPost__title" class="title2">Título do post</label>
+          <input type="text" id="modalPost__title" class="input__newpost text3" name="title" placeholder="Digite o título aqui...">
+
+          <label for="modalPost__content" class="title2">Conteúdo do post</label>
+          <textarea name="" id="modalPost__content" class="input__newpost text3" name="content" cols="30" rows="5" placeholder="Desenvolva o conteúdo do post aqui..."></textarea>
+
+          <div class="buttons__container">
+            <button id="cancel__button" class="btn btn--modal btn--gray btn--gray-modal text3">Cancelar</button>
+            <button id="createPost__button" class="btn btn--modal btn--brand text3">Publicar</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <dialog class="modal__controller modal__controller--post">
+      <div id="user">
+        <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
+      </div>
+    </dialog>
   </body>
 </html>

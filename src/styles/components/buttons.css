@@ -10,6 +10,10 @@
   border: 0.0625rem solid transparent;
 }
 
+.btn--modal {
+  padding-inline: 1rem;
+}
+
 .btn--brand {
   color: var(--gray-9);
   background-color: var(--brand-1);
@@ -29,6 +33,10 @@
 
 .btn--gray:hover {
   background-color: var(--gray-8);
+}
+
+.btn--gray-modal {
+  color: var(--gray-4);
 }
 
 .btn--alert {

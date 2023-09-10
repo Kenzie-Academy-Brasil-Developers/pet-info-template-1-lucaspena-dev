@@ -1,3 +1,4 @@
+import { handleCloseModal, handlePostModalAcess } from "./modal.js";
 import { getCurrentUserInfo, getAllPosts } from "./requests.js";
 
 // Renderiza todos os posts
@@ -10,6 +11,10 @@ export async function renderAllPosts() {
     const postArticle = await renderPost(post, true);
     postSection.appendChild(postArticle);
   });
+
+  setTimeout(() => {
+    handlePostModalAcess();
+  }, 1000);
 }
 
 // Renderiza um post
@@ -51,7 +56,7 @@ async function checkEditPermission(authorID) {
 }
 
 // Renderiza o cabeçalho de um post no feed
-async function renderPostHeader(post) {
+ async function renderPostHeader(post) {
   const userInfo = post.user;
 
   const postDateInfo = handleDate(post.createdAt);
@@ -146,4 +151,109 @@ function handleDate(timeStamp) {
   const year = date.getFullYear();
 
   return `${month} de ${year}`;
+}
+
+export const renderUserInfo = (user) => {
+  const username = document.querySelector(".user__uniquename");
+  const avatar = document.querySelector(".user__image");
+
+  username.innerText = `@${user.username.toLowerCase().replaceAll(" ","")}`;
+  avatar.src = user.avatar;
+};
+
+export const renderModalPost = async (data) => {
+  const modal = document.querySelector("#user");
+
+  const renderUserPost = async (post) => {
+    const closeButton = document.createElement("button");
+    closeButton.classList.add(
+      "modal__closeButton",
+      "btn--gray",
+      "btn--gray-modal",
+      "text3"
+    );
+    closeButton.innerText = "X";
+
+    const postContainer = document.createElement("article");
+    postContainer.classList.add("post");
+
+    const postTitle = document.createElement("h2");
+    postTitle.classList.add("post__title", "text1", "bolder");
+    postTitle.innerText = post.title;
+
+    const postContent = document.createElement("p");
+    postContent.classList.add("post__content", "text3");
+
+    const postHeader = await renderModalPostHeader(post);
+
+    postContent.classList.add("post__content--modal", "text3");
+    postContent.innerText = post.content;
+
+    postContainer.append(postHeader, postTitle, postContent);
+
+    modal.append(closeButton, postContainer);
+
+    handleCloseModal();
+
+    return modal
+  };
+
+  const renderModalPostHeader = async (post) => {
+    const userInfo = post.user;
+
+    const postDateInfo = handleModalDate(post.created_at);
+
+    const postHeader = document.createElement("header");
+    postHeader.classList.add("post__header");
+
+    const postInfo = document.createElement("div");
+    postInfo.classList.add("post__info");
+
+    const authorImage = document.createElement("img");
+    authorImage.classList.add("post__author-image");
+    authorImage.src = userInfo.avatar;
+
+    const authorName = document.createElement("h2");
+    authorName.classList.add("post__author-name", "text4", "bolder");
+    authorName.innerText = userInfo.username;
+
+    const divisor = document.createElement("small");
+    divisor.innerText = "|";
+    divisor.classList.add("post__date", "text4");
+
+    const postDate = document.createElement("small");
+    postDate.classList.add("post__date", "text4");
+    postDate.innerText = postDateInfo;
+
+    postInfo.append(authorImage, authorName, divisor, postDate);
+
+    postHeader.appendChild(postInfo);
+
+    return postHeader;
+  };
+
+  const handleModalDate = (timeStamp) => {
+    const months = [
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro",
+    ];
+
+    const date = new Date(timeStamp);
+    const month = months.at(date.getMonth());
+    const year = date.getFullYear();
+
+    return `${month} de ${year}`;
+  };
+
+  return renderUserPost(data)
 }
