@@ -14,6 +14,7 @@ export const openNewPostModal = () => {
 const handleNewPostModal = () => {
   const cancelButton = document.querySelector("#cancel__button");
   const createPostButton = document.querySelector("#createPost__button");
+  const posts = document.querySelector(".posts")
   const inputs = document.querySelectorAll(".input__newpost");
   const modalController = document.querySelector(".modal__controller--newPost");
 
@@ -27,7 +28,7 @@ const handleNewPostModal = () => {
     modalController.close();
   });
 
-  createPostButton.addEventListener("click", async (event) => {
+  createPostButton.addEventListener("click", (event) => {
     event.preventDefault();
 
     const title = document.querySelector("#modalPost__title");
@@ -47,8 +48,9 @@ const handleNewPostModal = () => {
       alert("Ops");
     } else {
       createNewPost(newPost);
+      posts.innerHTML = ""
+      renderAllPosts();
       modalController.close();
-      await renderAllPosts()
     }
   });
 
