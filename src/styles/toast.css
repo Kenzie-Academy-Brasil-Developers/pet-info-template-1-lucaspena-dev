@@ -9,18 +9,16 @@
 }
 
 .toast-title {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 
   font-size: 1rem;
   font-weight: 500;
-
-  margin-bottom: 0.5rem;
 }
 
 .toast-title--only {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
@@ -45,4 +43,36 @@
   text-decoration-color: var(--brand-1);
   text-decoration: underline;
   text-underline-offset: 5px;
+}
+
+.toastify-animation--top {
+  animation: rightTransition--top 0.7s;
+}
+
+.toastify-animation--bottom {
+  animation: rightTransition--bottom 0.7s;
+}
+
+@keyframes rightTransition--top {
+  0% {
+    top: 15px;
+    right: -50%;
+  }
+
+  100% {
+    top: 15px;
+    right: 15px;
+  }
+}
+
+@keyframes rightTransition--bottom {
+  0% {
+    bottom: 15px;
+    right: -50%;
+  }
+
+  100% {
+    bottom: 15px;
+    right: 15px;
+  }
 }

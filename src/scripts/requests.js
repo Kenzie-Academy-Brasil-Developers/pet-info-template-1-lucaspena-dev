@@ -6,6 +6,7 @@ import {
   red,
   sucess,
   error,
+  toastDel,
 } from "./toast.js";
 
 const baseUrl = "http://localhost:3333";
@@ -189,9 +190,9 @@ export const deletePostbyId = async (postId) => {
     const responseConverted = await response.json();
 
     if (response.ok) {
-      toast(sucess, responseConverted.message, green);
+      toastDel(sucess, `${responseConverted.message}!`, green);
     } else {
-      toast(error, responseConverted.message, green);
+      toastDel(error, responseConverted.message, green);
     }
   });
 

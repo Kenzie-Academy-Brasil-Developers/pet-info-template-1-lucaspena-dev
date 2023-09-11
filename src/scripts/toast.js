@@ -4,11 +4,12 @@ export const green = "#087F5B";
 export const red = "#c83751";
 export const blue = "#364fc7"
 
-export const toastLog = (validation, message, color) => {
+export const toastLog = (icon, message, color) => {
   Toastify({
-    text: `<h2 class="toast-title--only">${validation} ${message}</h2>`,
+    text: `<h2 class="toast-title--only">${icon} ${message}</h2>`,
     escapeMarkup: false,
-    duration: 3000,
+    duration: 4000,
+    className: "toastify-animation--top",
     gravity: "top", // `top` or `bottom`
     position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
@@ -16,26 +17,27 @@ export const toastLog = (validation, message, color) => {
       background: "#ffffff",
       color: color,
       "line-height": "1.25rem",
-      padding: "0.8rem 0.8rem",
+      padding: "1.3125rem 2rem",
       border: `3px solid ${color}`,
       "border-radius": "0.25rem",
     },
   }).showToast();
 };
 
-export const toastReg = (validation, message, color) => {
-  const verify = (check) => {
-    if (check === sucess) {
+export const toastReg = (icon, message, color) => {
+  const verifyIcon = (currentIcon) => {
+    if (currentIcon === sucess) {
       return '<p class="toast-paragraph--register">Agora você pode acessar os conteúdos utilizando seu usuário e senha na página de login: <a class="toast-anchor" href="../../">Acessar página de login</a></p>';
     }
     return "";
   };
 
   Toastify({
-    text: `<h2 class="toast-title">${validation} ${message}</h2>
-    ${verify(validation)}`,
+    text: `<h2 class="toast-title">${icon} ${message}</h2>
+    ${verifyIcon(icon)}`,
     escapeMarkup: false,
-    duration: 15000,
+    duration: 10000,
+    className: "toastify-animation--bottom",
     close: true,
     gravity: "bottom", // `top` or `bottom`
     position: "right", // `left`, `center` or `right`
@@ -45,28 +47,61 @@ export const toastReg = (validation, message, color) => {
       color: color,
       "line-height": "1.25rem",
       "text-align": "justify",
-      padding: "1.16rem",
+      padding: "1.3125rem 2rem",
       border: `3px solid ${color}`,
       "border-radius": "0.25rem",
     },
   }).showToast();
 };
 
-export const toast = (validation, message, color) => {
-  const verify = (check) => {
-    if(check === sucess){
-      return `<h2 class="toast-title--only">${validation} ${message}</h2>`
-    } else if (check === error) {
-      return `<h2 class="toast-title--only">${validation} ${message}</h2>`
+export const toastDel = (icon, message, color) => {
+  const verifyIcon = (currentIcon) => {
+    if (currentIcon === sucess) {
+      return '<p class="toast-paragraph--register">O post selecionado para exlusão foi deletado, a partir de agora não aparecerá no seu feed.</p>';
+    }
+    return "";
+  };
+
+  Toastify({
+    text: `<h2 class="toast-title">${icon} ${message}</h2>
+    ${verifyIcon(icon)}`,
+    escapeMarkup: false,
+    duration: 5000,
+    className: "toastify-animation--bottom",
+    gravity: "bottom", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      display: "inline-flex",
+      "flex-direction": "column",
+      background: "#ffffff",
+      color: color,
+      gap: "1rem",
+      "line-height": "1.25rem",
+      "text-align": "justify",
+      padding: "1.3125rem 2rem",
+      border: `3px solid ${color}`,
+      "border-radius": "0.25rem",
+    },
+  }).showToast();
+}
+
+export const toast = (icon, message, color) => {
+  const verifyIcon = (currentIcon) => {
+    if(currentIcon === sucess){
+      return `<h2 class="toast-title--only">${icon} ${message}</h2>`
+    } else if (currentIcon === error) {
+      return `<h2 class="toast-title--only">${icon} ${message}</h2>`
     } else {
       return `${message}`
     }
   }
 
   Toastify({
-    text: `${verify(validation)}`,
+    text: `${verifyIcon(icon)}`,
     escapeMarkup: false,
-    duration: 3000,
+    duration: 4000,
+    className: "toastify-animation--top",
     gravity: "top", // `top` or `bottom`
     position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
@@ -75,7 +110,7 @@ export const toast = (validation, message, color) => {
       color: color,
       "line-height": "1.25rem",
       "text-align": "justify",
-      padding: "0.8rem 0.8rem",
+      padding: "1.3125rem 2rem",
       border: `3px solid ${color}`,
       "border-radius": "0.25rem",
     },
