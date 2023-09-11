@@ -1,3 +1,5 @@
+import { textareaAutoResize } from "./feed.js";
+
 export const openNewPostModal = () => {
   const button_newPost = document.querySelector("#user__newpost");
   const modalController_newPost = document.querySelector(
@@ -7,6 +9,7 @@ export const openNewPostModal = () => {
   button_newPost.addEventListener("click", () => {
     modalController_newPost.showModal();
     closeModal();
+    textareaAutoResize();
   });
 };
 

@@ -1,8 +1,9 @@
 export const sucess = '<i class="fas fa-check-circle toast-check"></i>';
-export const error = '<i class="fa-solid fa-circle-exclamation toast-check"></i>';
+export const error =
+  '<i class="fa-solid fa-circle-exclamation toast-check"></i>';
 export const green = "#087F5B";
 export const red = "#c83751";
-export const blue = "#364fc7"
+export const blue = "#364fc7";
 
 export const toastLog = (icon, message, color) => {
   Toastify({
@@ -43,6 +44,9 @@ export const toastReg = (icon, message, color) => {
     position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover
     style: {
+      display: "inline-flex",
+      "flex-direction": "column",
+      gap: "1rem",
       background: "#ffffff",
       color: color,
       "line-height": "1.25rem",
@@ -74,9 +78,9 @@ export const toastDel = (icon, message, color) => {
     style: {
       display: "inline-flex",
       "flex-direction": "column",
+      gap: "1rem",
       background: "#ffffff",
       color: color,
-      gap: "1rem",
       "line-height": "1.25rem",
       "text-align": "justify",
       padding: "1.3125rem 2rem",
@@ -84,24 +88,24 @@ export const toastDel = (icon, message, color) => {
       "border-radius": "0.25rem",
     },
   }).showToast();
-}
+};
 
 export const toast = (icon, message, color) => {
   const verifyIcon = (currentIcon) => {
-    if(currentIcon === sucess){
-      return `<h2 class="toast-title--only">${icon} ${message}</h2>`
+    if (currentIcon === sucess) {
+      return `<h2 class="toast-title--only">${icon} ${message}</h2>`;
     } else if (currentIcon === error) {
-      return `<h2 class="toast-title--only">${icon} ${message}</h2>`
+      return `<h2 class="toast-title--only">${icon} ${message}</h2>`;
     } else {
-      return `${message}`
+      return `${message}`;
     }
-  }
+  };
 
   Toastify({
     text: `${verifyIcon(icon)}`,
     escapeMarkup: false,
     duration: 4000,
-    className: "toastify-animation--top",
+    className: "toastify-animation--top toast-message",
     gravity: "top", // `top` or `bottom`
     position: "right", // `left`, `center` or `right`
     stopOnFocus: true, // Prevents dismissing of toast on hover

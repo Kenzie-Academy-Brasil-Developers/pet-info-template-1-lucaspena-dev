@@ -38,12 +38,31 @@ const showUserMenu = () => {
   });
 };
 
-const main = async () => {
+const main = () => {
   postSection.innerHTML = "";
   // Adiciona os eventos de click ao menu flutuante de logout
   showUserMenu();
   // Renderiza todos os posts no feed (render.js)
-  await renderAllPosts();
+  renderAllPosts();
+};
+
+export const textareaAutoResize = () => {
+  const textarea_newPost = document.querySelector("#modalPost__content");
+  const textarea_editPost = document.querySelector("#editPost-content");
+
+  textarea_newPost.style.cssText = `height: ${textarea_newPost.scrollHeight}px; overflow-y: hidden`;
+
+  textarea_newPost.addEventListener("input", () => {
+    textarea_newPost.style.height = "auto";
+    textarea_newPost.style.height = `${textarea_newPost.scrollHeight}px`;
+  });
+
+  textarea_editPost.style.cssText = `height: ${textarea_editPost.scrollHeight}px; overflow-y: hidden`;
+
+  textarea_editPost.addEventListener("input", () => {
+    textarea_editPost.style.height = "auto";
+    textarea_editPost.style.height = `${textarea_editPost.scrollHeight}px`;
+  });
 };
 
 const handleNewPostModal = () => {
@@ -55,7 +74,7 @@ const handleNewPostModal = () => {
   const posts = document.querySelector(".posts");
   const inputs = document.querySelectorAll(".input__newpost");
 
-  const modalController = document.querySelector(".modal__controller--newPost")
+  const modalController = document.querySelector(".modal__controller--newPost");
 
   cancelButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -162,6 +181,7 @@ export const updateEditModal = async () => {
 
       modalController.showModal();
       closeModal();
+      textareaAutoResize()
     });
   });
 };
@@ -255,13 +275,13 @@ const handleDeletePost = () => {
 
   submitButton.addEventListener("click", async (event) => {
     await deletePostbyId(event.target.dataset.id);
-    modalController.close()
-    renderAllPosts()
+    modalController.close();
+    renderAllPosts();
   });
 };
 
 authentication();
-await main();
+main();
 renderUserInfo(await getCurrentUserInfo());
 handleNewPostModal();
 handleEditPostModal();

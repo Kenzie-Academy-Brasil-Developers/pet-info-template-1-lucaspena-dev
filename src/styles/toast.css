@@ -30,6 +30,13 @@
   font-weight: 900;
 }
 
+.toast-message {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: normal;
+}
+
 .toast-paragraph--register {
   font-size: 0.9rem;
   color: var(--gray-1);

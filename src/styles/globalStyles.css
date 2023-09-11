@@ -32,6 +32,8 @@
 
 body {
   position: relative;
+  height: 100vh;
+  max-height: max-content;
   font-family: "IBM Plex Sans", sans-serif;
   color: var(--gray-1);
   overflow-x: hidden;
