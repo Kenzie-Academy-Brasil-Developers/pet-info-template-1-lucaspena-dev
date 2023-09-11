@@ -2,13 +2,18 @@
 
 import { loginRequest } from "./requests.js";
 
+const authentication = () => {
+  const token = localStorage.getItem("@petinfo:token");
+
+  if (token) {
+    location.replace("./src/pages/feed.html");
+  }
+};
+
 const handleLogin = () => {
   const email = document.querySelector("#Email");
   const pass = document.querySelector("#Senha");
-  const wrongEmail = document.querySelector("#wrong-email");
-  const wrongPass = document.querySelector("#wrong-password");
   const button = document.querySelector("#login__submit");
-  let count = 0;
 
   button.addEventListener("click", (event) => {
     event.preventDefault();
@@ -31,9 +36,10 @@ const handleRegisterButton = () => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
 
-    location.href = "./src/pages/register.html";
+    location.replace("./src/pages/register.html");
   });
 };
 
+authentication()
 handleLogin();
 handleRegisterButton();

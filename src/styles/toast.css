@@ -1,0 +1,48 @@
+@import url(./globalStyles.css);
+
+.toast-close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  color: var(--gray-1);
+}
+
+.toast-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  margin-bottom: 0.5rem;
+}
+
+.toast-title--only {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.toast-check {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.toast-paragraph--register {
+  font-size: 0.9rem;
+  color: var(--gray-1);
+}
+
+.toast-anchor {
+  color: var(--brand-1);
+}
+
+.toast-anchor:hover {
+  text-decoration-color: var(--brand-1);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}

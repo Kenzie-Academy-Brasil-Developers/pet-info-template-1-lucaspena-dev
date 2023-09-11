@@ -1,4 +1,12 @@
-import { renderAllPosts } from "./render.js";
+import {
+  toastReg,
+  toastLog,
+  green,
+  toast,
+  red,
+  sucess,
+  error,
+} from "./toast.js";
 
 const baseUrl = "http://localhost:3333";
 const token = localStorage.getItem("@petinfo:token");
@@ -43,14 +51,13 @@ export const createNewUser = async (requestBody) => {
       const responseConverted = await response.json();
 
       if (response.ok) {
-        alert("Usuário criado com sucesso!");
-        await renderAllPosts(responseConverted);
+        toastReg(sucess, "Sua conta foi criada sucesso!", green);
         return responseConverted;
       } else {
         throw new Error(responseConverted.message);
       }
     })
-    .catch((erro) => alert(erro.message));
+    .catch((erro) => toastReg(error, erro.message, red));
 
   return newUser;
 };
@@ -67,9 +74,14 @@ export const loginRequest = async (requestBody) => {
       const responseConverted = await response.json();
 
       if (response.ok) {
-        alert("Logado com sucesso!");
+        toastLog(sucess, `Logado com sucesso!`, green);
         localStorage.setItem("@petinfo:token", responseConverted.token);
-        location.replace("./src/pages/feed.html");
+
+        setTimeout(() => {
+          location.replace("./src/pages/feed.html");
+        }, 1500);
+
+        return responseConverted;
       } else {
         throw new Error(responseConverted.message);
       }
@@ -100,7 +112,7 @@ export const loginRequest = async (requestBody) => {
       } else if (erro.message === "A senha está incorreta") {
         wrongPass.classList.toggle("hidden");
         wrongPass.innerText = erro.message;
-        
+
         setTimeout(() => {
           wrongPass.classList.toggle("hidden");
         }, 3000);
@@ -130,8 +142,8 @@ export const createNewPost = async (requestBody) => {
   return post;
 };
 
-export const acessPost = async (id) => {
-  const post = await fetch(`${baseUrl}/posts/${id}`, {
+export const getPostById = async (postId) => {
+  const post = await fetch(`${baseUrl}/posts/${postId}`, {
     method: "GET",
     headers: requestHeaders,
   })
@@ -144,7 +156,44 @@ export const acessPost = async (id) => {
         throw new Error(responseConverted.message);
       }
     })
-    .catch((erro) => alert(erro.message));
+    .catch((erro) => toast(error, erro.message, red));
 
   return post;
+};
+
+export const editPost = async (postId, requestBody) => {
+  const editPost = await fetch(`${baseUrl}/posts/${postId}`, {
+    method: "PATCH",
+    headers: requestHeaders,
+    body: JSON.stringify(requestBody),
+  })
+    .then(async (response) => {
+      const responseConverted = await response.json();
+
+      if (response.ok) {
+        return responseConverted;
+      } else {
+        throw new Error(responseConverted.message);
+      }
+    })
+    .catch((erro) => toast(error, erro.message, red));
+
+  return editPost;
+};
+
+export const deletePostbyId = async (postId) => {
+  const deletePost = await fetch(`${baseUrl}/posts/${postId}`, {
+    method: "DELETE",
+    headers: requestHeaders,
+  }).then(async (response) => {
+    const responseConverted = await response.json();
+
+    if (response.ok) {
+      toast(sucess, responseConverted.message, green);
+    } else {
+      toast(error, responseConverted.message, green);
+    }
+  });
+
+  return deletePost;
 };

@@ -1,5 +1,6 @@
-import { handleCloseModal, handlePostModalAcess } from "./modal.js";
 import { getCurrentUserInfo, getAllPosts } from "./requests.js";
+import { handlePostModal, updateDeletePost, updateEditModal } from "./feed.js";
+import { closeModal } from "./modal.js";
 
 // Renderiza todos os posts
 export async function renderAllPosts() {
@@ -10,11 +11,10 @@ export async function renderAllPosts() {
   posts.forEach(async (post) => {
     const postArticle = await renderPost(post, true);
     postSection.appendChild(postArticle);
+    handlePostModal();
+    updateEditModal();
+    updateDeletePost();
   });
-
-  setTimeout(() => {
-    handlePostModalAcess();
-  }, 1000);
 }
 
 // Renderiza um post
@@ -56,7 +56,7 @@ async function checkEditPermission(authorID) {
 }
 
 // Renderiza o cabeçalho de um post no feed
- async function renderPostHeader(post) {
+async function renderPostHeader(post) {
   const userInfo = post.user;
 
   const postDateInfo = handleDate(post.createdAt);
@@ -157,7 +157,7 @@ export const renderUserInfo = (user) => {
   const username = document.querySelector(".user__uniquename");
   const avatar = document.querySelector(".user__image");
 
-  username.innerText = `@${user.username.toLowerCase().replaceAll(" ","")}`;
+  username.innerText = `@${user.username.toLowerCase().replaceAll(" ", "")}`;
   avatar.src = user.avatar;
 };
 
@@ -193,9 +193,9 @@ export const renderModalPost = async (data) => {
 
     modal.append(closeButton, postContainer);
 
-    handleCloseModal();
+    closeModal();
 
-    return modal
+    return modal;
   };
 
   const renderModalPostHeader = async (post) => {
@@ -255,5 +255,5 @@ export const renderModalPost = async (data) => {
     return `${month} de ${year}`;
   };
 
-  return renderUserPost(data)
-}
+  return renderUserPost(data);
+};

@@ -10,3 +10,7 @@
   text-align: center;
   gap: 1.25rem;
 }
+
+.wrong__credential {
+  transition: 0.3s linear;
+}

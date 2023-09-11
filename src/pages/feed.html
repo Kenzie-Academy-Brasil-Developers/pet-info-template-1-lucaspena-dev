@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Petinfo - Feed</title>
 
+    <!-- Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <!-- CSS -->
     <link rel="stylesheet" href="../../src/styles/reset.css" />
     <link rel="stylesheet" href="../../src/styles/globalStyles.css" />
     <link rel="stylesheet" href="../../src/styles/feed.css" />
 
     <!-- SCRIPTS -->
+    <script src="https://kit.fontawesome.com/2945acfd9e.js" crossorigin="anonymous"></script>
     <script type="module" src="../scripts/feed.js" defer></script>
   </head>
   <body>
@@ -52,13 +56,37 @@
         <form id="newPost">
           <label for="modalPost__title" class="title2">Título do post</label>
           <input type="text" id="modalPost__title" class="input__newpost text3" name="title" placeholder="Digite o título aqui...">
+          <small id="empty-title" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
 
           <label for="modalPost__content" class="title2">Conteúdo do post</label>
-          <textarea name="" id="modalPost__content" class="input__newpost text3" name="content" cols="30" rows="5" placeholder="Desenvolva o conteúdo do post aqui..."></textarea>
+          <textarea id="modalPost__content" class="input__newpost text3" name="content" cols="30" rows="5" placeholder="Desenvolva o conteúdo do post aqui..."></textarea>
+          <small id="empty-content" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
 
           <div class="buttons__container">
-            <button id="cancel__button" class="btn btn--modal btn--gray btn--gray-modal text3">Cancelar</button>
+            <button id="cancel__button" class="btn btn--modal btn--gray btn--gray-modal modal__closeButton text3">Cancelar</button>
             <button id="createPost__button" class="btn btn--modal btn--brand text3">Publicar</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <dialog class="modal__controller modal__controller--editPost">
+      <div class="modal__container modal__container--editPost">
+        <h2 class="title3">Edição</h2>
+        <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
+
+        <form id="editPost">
+          <label for="editPost-title" class="title2">Título do post</label>
+          <input type="text" id="editPost-title" class="input__edit-post text3" name="title" placeholder="Digite o título aqui...">
+          <small id="empty-editTitle" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
+
+          <label for="editPost-content" class="title2">Conteúdo do post</label>
+          <textarea id="editPost-content" class="input__edit-post text3" name="content" cols="30" rows="5" placeholder="Desenvolva o conteúdo do post aqui..."></textarea>
+          <small id="empty-editContent" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
+
+          <div class="buttons__container">
+            <button id="editCancel__button" class="btn btn--modal btn--gray btn--gray-modal modal__closeButton text3">Cancelar</button>
+            <button id="submitEditPost__button" class="btn btn--modal btn--brand text3">Salvar Alterações</button>
           </div>
         </form>
       </div>
@@ -69,5 +97,24 @@
         <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
       </div>
     </dialog>
+
+    <dialog class="modal__controller modal__controller--deletePost">
+      <div class="modal__container">
+        <h2 class="title2">Confirmação de exclusão</h2>
+        <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
+
+        <div class="deleteInfo__container">
+          <h2 class="title3 delete--confirmationTitle">Tem certeza que deseja excluir este post?</h2>
+          <p class="text3 delete__paragraph">Essa ação não poderá ser desfeita, então pedimos que tenha cautela antes de concluir</p>
+        </div>
+
+        <div class="buttons__container buttons__container--deletePost">
+            <button id="deleteCancel__button" class="btn btn--modal btn--gray btn--gray-modal modal__closeButton text3">Cancelar</button>
+            <button id="deletePost__button" class="btn btn--modal btn--alert text3">Sim, excluir este post</button>
+        </div>  
+      </div>
+    </dialog>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>
