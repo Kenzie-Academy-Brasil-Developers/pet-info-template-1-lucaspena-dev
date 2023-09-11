@@ -213,6 +213,12 @@
   position: unset;
 }
 
+.newPost--title,
+.editPost--title,
+.delete--confirmationTitle {
+  font-weight: 500;
+}
+
 #newPost,
 #editPost {
   width: 100%;
@@ -238,7 +244,7 @@
   align-self: flex-end;
   gap: 0.8rem;
 
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 
 .modal__controller--deletePost {
@@ -256,10 +262,6 @@
 .buttons__container--deletePost {
   align-self: flex-start;
   padding-top: 0.5rem;
-}
-
-.delete--confirmationTitle {
-  font-weight: 500;
 }
 
 .delete__paragraph {

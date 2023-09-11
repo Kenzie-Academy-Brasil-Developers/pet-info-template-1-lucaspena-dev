@@ -50,15 +50,15 @@
 
     <dialog class="modal__controller modal__controller--newPost">
       <div class="modal__container">
-        <h2 class="title3">Criando um novo post</h2>
+        <h2 class="title3 newPost--title">Criando um novo post</h2>
         <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
 
         <form id="newPost">
-          <label for="modalPost__title" class="title2">Título do post</label>
+          <label for="modalPost__title" class="title2 newPost--title">Título do post</label>
           <input type="text" id="modalPost__title" class="input__newpost text3" name="title" placeholder="Digite o título aqui...">
           <small id="empty-title" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
 
-          <label for="modalPost__content" class="title2">Conteúdo do post</label>
+          <label for="modalPost__content" class="title2 newPost--title">Conteúdo do post</label>
           <textarea id="modalPost__content" class="input__newpost text3" name="content" cols="30" rows="5" placeholder="Desenvolva o conteúdo do post aqui..."></textarea>
           <small id="empty-content" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
 
@@ -70,17 +70,23 @@
       </div>
     </dialog>
 
+    <dialog class="modal__controller modal__controller--post">
+      <div id="user">
+        <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
+      </div>
+    </dialog>
+
     <dialog class="modal__controller modal__controller--editPost">
       <div class="modal__container modal__container--editPost">
-        <h2 class="title3">Edição</h2>
+        <h2 class="title3 editPost--title">Edição</h2>
         <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
 
         <form id="editPost">
-          <label for="editPost-title" class="title2">Título do post</label>
+          <label for="editPost-title" class="title2 editPost--title">Título do post</label>
           <input type="text" id="editPost-title" class="input__edit-post text3" name="title" placeholder="Digite o título aqui...">
           <small id="empty-editTitle" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
 
-          <label for="editPost-content" class="title2">Conteúdo do post</label>
+          <label for="editPost-content" class="title2 editPost--title">Conteúdo do post</label>
           <textarea id="editPost-content" class="input__edit-post text3" name="content" cols="30" rows="5" placeholder="Desenvolva o conteúdo do post aqui..."></textarea>
           <small id="empty-editContent" class="empty-input text4 alert hidden">Por favor, preencha o campo!</small>
 
@@ -89,12 +95,6 @@
             <button id="submitEditPost__button" class="btn btn--modal btn--brand text3">Salvar Alterações</button>
           </div>
         </form>
-      </div>
-    </dialog>
-
-    <dialog class="modal__controller modal__controller--post">
-      <div id="user">
-        <button class="modal__closeButton btn--gray btn--gray-modal text3">X</button>
       </div>
     </dialog>
 
