@@ -51,8 +51,11 @@ const handleNewPostModal = () => {
 
   const cancelButton = document.querySelector("#cancel__button");
   const createPostButton = document.querySelector("#createPost__button");
+
   const posts = document.querySelector(".posts");
   const inputs = document.querySelectorAll(".input__newpost");
+
+  const modalController = document.querySelector(".modal__controller--newPost")
 
   cancelButton.addEventListener("click", (event) => {
     event.preventDefault();
@@ -245,7 +248,16 @@ export const updateDeletePost = () => {
 };
 
 const handleDeletePost = () => {
+  const submitButton = document.querySelector("#deletePost__button");
+  const modalController = document.querySelector(
+    ".modal__controller--deletePost"
+  );
 
+  submitButton.addEventListener("click", async (event) => {
+    await deletePostbyId(event.target.dataset.id);
+    modalController.close()
+    renderAllPosts()
+  });
 };
 
 authentication();
@@ -253,3 +265,4 @@ await main();
 renderUserInfo(await getCurrentUserInfo());
 handleNewPostModal();
 handleEditPostModal();
+handleDeletePost();
